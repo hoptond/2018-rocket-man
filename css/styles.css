@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+
+#splash-screen {
+    height: 800px;
+    width: 1000px;
+    margin: auto;
+    
+}
