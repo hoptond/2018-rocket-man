@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+.game-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: auto;
+    background-image: url('../img/background.jpg');
+}
+
+.col {
+    position: relative;
+    width: 250px;
+    float: left;
+}
+
+img.missile {
+    position: relative;
+    width: 25px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+img.city {
+    width: 183px;
+    display: block;
+    margin: 250px auto 0 auto;
+}
+
+.keyboard-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.keyboard {
+    display: inline-block;
+    background-color: #000000;
+    color: #71b264;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 20px 98px 0 98px;
+    text-align: center;
+    line-height: 50px;
+}
+
+
+.score-wrapper {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.totals {
+    display: inline-block;
+    width: 150px;
+    padding: 0 10px;
+}
+
+.totals h2 {
+    font-size: 16px;
+}
+
+.totals p {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.totals.score p {
+    background-color: #71b264;
+}
+
+.totals.toll p {
+    background-color: #b21123;
+}
+
+.start {
+    background-color: #b21123;
+    color: #ffffff;
+    margin: 0 auto;
+    border-radius: 100%;
+    border: 4px solid #cccccc;
+    width: 100px;
+    height: 100px;
+    line-height: 90px;
+    text-align: center;
+}
