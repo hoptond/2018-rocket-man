@@ -2,9 +2,56 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Play', sans-serif;
+    color: white;
+
+}
+
 #splash-screen {
     height: 800px;
     width: 1000px;
     margin: auto;
-    
+    background-color: black;
+    overflow: hidden;
+
 }
+
+#splash-rocket-img {
+    width: 724px;
+    height: 232px;
+}
+
+#splash-title-rocket {
+    position: relative;
+    right: 1224px;
+    top: 50px;
+    width: 2000px;
+}
+
+#splash-flames {
+    height: 232px;
+    width: 500px;
+}
+
+#splash-title {
+    position: absolute;
+    text-align: center;
+    font-size: 6rem;
+    width: 1000px;
+    margin-top: 100px;
+    display: none;
+}
+
+#splash-open-game {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 100px auto;
+    font-size: 2rem;
+    text-align: center;
+    border-style: solid;
+    text-decoration: none;
+    color: white;
+}
+
