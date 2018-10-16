@@ -15,8 +15,9 @@ body {
     height: 800px;
     width: 1000px;
     margin: auto;
-    background-color: #000000;
     overflow: hidden;
+    background-image: url("../img/background.jpg");
+    background-size: cover;
 }
 
 #splash-rocket-img {
