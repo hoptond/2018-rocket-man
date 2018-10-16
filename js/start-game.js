@@ -1,7 +1,7 @@
 
 
 
-$(function () {
+$( window ).on( "load", function () {
     var $rocketImg = $('#splash-title-rocket')
     var $title = $('#splash-title')
     $rocketImg.animate({
@@ -13,9 +13,10 @@ $(function () {
     }
     , 800)
 
-    document.getElementById('splash-open-game').addEventListener("click", function(){
-        document.getElementById('splash-screen').style.display = 'none'
-    })
+
 
 })
 
+document.getElementById('splash-open-game').addEventListener("click", function(){
+    document.getElementById('splash-screen').style.display = 'none'
+})
