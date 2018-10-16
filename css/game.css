@@ -25,19 +25,18 @@ main {
 }
 
 img.missile {
-    position: relative;
+    position: absolute;
     width: 25px;
     display: block;
     margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .city {
     width: 183px;
     height: 600px;
     display: block;
-    position: absolute;
-    top: 0;
-    left: 14%;
     margin: 0 auto;
     background-position: bottom;
     background-repeat: no-repeat;
