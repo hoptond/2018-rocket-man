@@ -30,7 +30,9 @@ function makeNoise(noise) {
         cheer1: 'audio/cheer1.wav',
         cheer2: 'audio/cheer2.wav',
         cheer3: 'audio/cheer3.wav',
-        cheer4: 'audio/cheer4.wav'
+        cheer4: 'audio/cheer4.wav',
+        hitcity: 'audio/hit_city.wav',
+        miss: 'audio/laser_miss.wav'
     }
     var audio = new Audio(audioObj[noise])
     audio.play()

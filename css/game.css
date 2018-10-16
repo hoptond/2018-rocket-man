@@ -44,6 +44,11 @@ img.missile {
     background-size: cover;
 }
 
+.explosion {
+    background-image: url('../img/city-hit.gif');
+    width: 131px;
+}
+
 .city1 {
     background-image: url('../img/cities-1.png');
 }

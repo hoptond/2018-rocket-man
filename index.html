@@ -38,7 +38,9 @@
         <div class="game-wrapper">
             <div class="col">
                 <img src="img/missile-drop-down-white.png" class="missile" id="bomb-1">
-                <div id="city-1" class="city city1" data-city="1"></div>
+                <div id="city-1" class="city city1" data-city="1">
+                    <div class="explosion"></div>
+                </div>
             </div>
             <div class="col">
                 <img src="img/missile-drop-down-white.png" class="missile" id="bomb-2">
@@ -66,14 +68,15 @@
             </div>
             <div class="toll totals">
                 <h2>DEATH TOLL:</h2>
-                <p id="toll">1,125,423</p>
+                <p id="toll">0</p>
             </div>
         </div>
         <div id="start" class="start">START</div>
     </main>
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/anims-lasers.js"></script>
-    <script src="JS/audio.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/miss.js"></script>
     <script src="js/start-game.js"></script>
 </body>
 </html>
