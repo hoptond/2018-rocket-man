@@ -1,9 +1,8 @@
 function shootLaser($city) {
     var cityid = $city.data('city')
     $city.attr('src','img/cities-' + cityid + '-laser.png')
-    var $this = $city
     setTimeout(function () {
-        $this.attr('src','img/cities-' + cityid + '.png')
+        $city.attr('src','img/cities-' + cityid + '.png')
     }, 300)
 }
 $('.city').click(function () {
