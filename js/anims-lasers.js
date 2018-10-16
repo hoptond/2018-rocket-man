@@ -10,6 +10,19 @@ $('.city').click(function () {
     shootLaser($(this))
 })
 
-$(window).keypress(function() {
-    console.log( "Handler for .keypress() called." );
-});
+document.addEventListener('keypress', function(e) {
+    switch (true) {
+        case (e.key === 'q'):
+            shootLaser($('#city-1'))
+            break
+        case (e.key === 'w'):
+            shootLaser($('#city-2'))
+            break
+        case (e.key === 'e'):
+            shootLaser($('#city-3'))
+            break
+        case (e.key === 'r'):
+            shootLaser($('#city-4'))
+            break
+    }
+})
