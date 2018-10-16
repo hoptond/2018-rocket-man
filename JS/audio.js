@@ -5,22 +5,26 @@ var audioObj = {
     cheer4: 'audio/cheer4.wav'
 }
 
-document.addEventListener('keypress', function(e) {
-    switch (true) {
-        case (e.key === 'q'):
-            makeNoise('cheer1', audioObj)
-            break
-        case (e.key === 'w'):
-            makeNoise('cheer2', audioObj)
-            break
-        case (e.key === 'e'):
-            makeNoise('cheer3', audioObj)
-            break
-        case (e.key === 'r'):
-            makeNoise('cheer4', audioObj)
-            break
-    }
-})
+function listenKeypress() {
+    document.addEventListener('keypress', function(e) {
+        switch (true) {
+            case (e.key === 'q'):
+                makeNoise('cheer1', audioObj)
+                break
+            case (e.key === 'w'):
+                makeNoise('cheer2', audioObj)
+                break
+            case (e.key === 'e'):
+                makeNoise('cheer3', audioObj)
+                break
+            case (e.key === 'r'):
+                makeNoise('cheer4', audioObj)
+                break
+        }
+    })
+}
+
+listenKeypress()
 
 var cities = document.querySelectorAll('.city')
 cities.forEach(function(city) {
