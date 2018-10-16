@@ -1,12 +1,7 @@
-function shootLaser($city) {
-    var cityid = $city.data('city')
-    $city.attr('src','img/cities-' + cityid + '-laser.png')
-    setTimeout(function () {
-        $city.attr('src','img/cities-' + cityid + '.png')
-    }, 300)
-}
-$('.city').click(function () {
-    shootLaser($(this))
+$(function() {
+    $('.city').click(function () {
+        shootLaser($(this))
+    })
 })
 
 document.addEventListener('keypress', function(e) {
@@ -25,3 +20,11 @@ document.addEventListener('keypress', function(e) {
             break
     }
 })
+
+function shootLaser($city) {
+    var cityid = $city.data('city')
+    $city.attr('src','img/cities-' + cityid + '-laser.png')
+    setTimeout(function () {
+        $city.attr('src','img/cities-' + cityid + '.png')
+    }, 300)
+}
