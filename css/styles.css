@@ -8,14 +8,14 @@ html {
 
 body {
     font-family: 'Play', sans-serif;
-    color: white;
+    color: #ffffff;
 }
 
 #splash-screen {
     height: 800px;
     width: 1000px;
     margin: auto;
-    background-color: black;
+    background-color: #000000;
     overflow: hidden;
 }
 
@@ -54,7 +54,7 @@ body {
     text-align: center;
     border-style: solid;
     text-decoration: none;
-    color: white;
+    color: #ffffff;
     position: relative;
 }
 
