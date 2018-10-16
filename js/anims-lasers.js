@@ -23,7 +23,6 @@ function listenKeypress() {
         }
         if (e.key in keys) {
             var $city = $(keys[e.key])
-            console.log($city)
             shootLaser($city)
 
         }
