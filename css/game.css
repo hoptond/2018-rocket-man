@@ -7,6 +7,7 @@ main {
     height: 800px;
     margin: 0 auto;
     background-color: #cccccc;
+    display: none;
 }
 
 .game-wrapper {

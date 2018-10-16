@@ -1,24 +1,27 @@
 function listenKeypress() {
     document.addEventListener('keypress', function(e) {
         var keys = {
-            'q': 'cheer1',
-            'w': 'cheer2',
-            'e': 'cheer3',
-            'r': 'cheer4'
+            'q': '1',
+            'w': '2',
+            'e': '3',
+            'r': '4'
         }
         if (e.key in keys) {
-            makeNoise(keys[e.key])
+            var sound = 'cheer' + keys[e.key]
+            makeNoise(sound)
+            var $city = $('#city-' + keys[e.key])
+            shootLaser($city)
         }
     })
 }
-
-listenKeypress()
 
 var cities = document.querySelectorAll('.city')
 cities.forEach(function(city) {
     city.addEventListener('click', function() {
         var param = 'cheer' + city.dataset.city
         makeNoise(param)
+        var $city = $('#city-' + city.dataset.city)
+        shootLaser($city)
     })
 })
 
