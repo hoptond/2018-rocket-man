@@ -1,8 +1,8 @@
 var audioObj = {
-    cheer1: '../audio/cheer1.wav',
-    cheer2: '../audio/cheer2.wav',
-    cheer3: '../audio/cheer3.wav',
-    cheer4: '../audio/cheer4.wav'
+    cheer1: 'audio/cheer1.wav',
+    cheer2: 'audio/cheer2.wav',
+    cheer3: 'audio/cheer3.wav',
+    cheer4: 'audio/cheer4.wav'
 }
 
 document.addEventListener('keypress', function(e) {
@@ -22,19 +22,13 @@ document.addEventListener('keypress', function(e) {
     }
 })
 
-document.querySelector('#city-1').addEventListener('click', function() {
-    makeNoise('cheer1', audioObj)
+var cities = document.querySelectorAll('.city')
+cities.forEach(function(city) {
+    city.addEventListener('click', function() {
+        var param = 'cheer' + city.dataset.city
+        makeNoise(param, audioObj)
+    })
 })
-document.querySelector('#city-2').addEventListener('click', function() {
-    makeNoise('cheer2', audioObj)
-})
-document.querySelector('#city-3').addEventListener('click', function() {
-    makeNoise('cheer3', audioObj)
-})
-document.querySelector('#city-4').addEventListener('click', function() {
-    makeNoise('cheer4', audioObj)
-})
-
 
 function makeNoise(noise, audioObject) {
     var audio = new Audio(audioObject[noise])
