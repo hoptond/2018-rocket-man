@@ -77,6 +77,7 @@ img.city {
 }
 
 .start {
+    display: none;
     background-color: #b21123;
     color: #ffffff;
     margin: 0 auto;
