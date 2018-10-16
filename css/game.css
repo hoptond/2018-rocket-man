@@ -17,9 +17,6 @@ main {
     background-image: url('../img/background.jpg');
 }
 
-
-
-
 .col {
     position: relative;
     width: 250px;
@@ -33,7 +30,6 @@ img.missile {
     display: block;
     margin: 0 auto;
 }
-
 
 .city {
     width: 183px;
