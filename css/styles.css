@@ -9,7 +9,6 @@ html {
 body {
     font-family: 'Play', sans-serif;
     color: white;
-
 }
 
 #splash-screen {
@@ -18,7 +17,6 @@ body {
     margin: auto;
     background-color: black;
     overflow: hidden;
-
 }
 
 #splash-rocket-img {
@@ -63,7 +61,6 @@ body {
 #splash-bottom-wrapper {
     position: relative;
     top: 3px;
-
 }
 
 #splash-city {
@@ -79,13 +76,9 @@ body {
     padding: 0 20px;
     font-size: 1.9rem;
     background-color: rgba(0,0,0,0.25);
-;
-
 }
 
 #splash-background {
     position: absolute;
     width: 1000px;
 }
-
-/*// height="1200" width="1500"*/
