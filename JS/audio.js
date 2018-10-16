@@ -15,6 +15,14 @@ function listenKeypress() {
     })
 }
 
+function shootLaser($city) {
+    var cityid = $city.data('city')
+    $city.addClass('laser')
+    setTimeout(function () {
+        $city.removeClass('laser')
+    }, 300)
+}
+
 var cities = document.querySelectorAll('.city')
 cities.forEach(function(city) {
     city.addEventListener('click', function() {
