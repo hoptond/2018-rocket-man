@@ -1,25 +1,13 @@
-var audioObj = {
-    cheer1: 'audio/cheer1.wav',
-    cheer2: 'audio/cheer2.wav',
-    cheer3: 'audio/cheer3.wav',
-    cheer4: 'audio/cheer4.wav'
-}
-
 function listenKeypress() {
     document.addEventListener('keypress', function(e) {
-        switch (true) {
-            case (e.key === 'q'):
-                makeNoise('cheer1', audioObj)
-                break
-            case (e.key === 'w'):
-                makeNoise('cheer2', audioObj)
-                break
-            case (e.key === 'e'):
-                makeNoise('cheer3', audioObj)
-                break
-            case (e.key === 'r'):
-                makeNoise('cheer4', audioObj)
-                break
+        var keys = {
+            'q': 'cheer1',
+            'w': 'cheer2',
+            'e': 'cheer3',
+            'r': 'cheer4'
+        }
+        if (e.key in keys) {
+            makeNoise(keys[e.key])
         }
     })
 }
@@ -30,11 +18,17 @@ var cities = document.querySelectorAll('.city')
 cities.forEach(function(city) {
     city.addEventListener('click', function() {
         var param = 'cheer' + city.dataset.city
-        makeNoise(param, audioObj)
+        makeNoise(param)
     })
 })
 
-function makeNoise(noise, audioObject) {
-    var audio = new Audio(audioObject[noise])
+function makeNoise(noise) {
+    var audioObj = {
+        cheer1: 'audio/cheer1.wav',
+        cheer2: 'audio/cheer2.wav',
+        cheer3: 'audio/cheer3.wav',
+        cheer4: 'audio/cheer4.wav'
+    }
+    var audio = new Audio(audioObj[noise])
     audio.play()
 }
