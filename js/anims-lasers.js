@@ -21,10 +21,13 @@ document.addEventListener('keypress', function(e) {
     }
 })
 
+
+
 function shootLaser($city) {
     var cityid = $city.data('city')
-    $city.attr('src','img/cities-' + cityid + '-laser.png')
+    $city.addClass('laser')
+    //$city.attr('src','img/cities-' + cityid + '-laser.png')
     setTimeout(function () {
-        $city.attr('src','img/cities-' + cityid + '.png')
+        $city.removeClass('laser')
     }, 300)
 }
