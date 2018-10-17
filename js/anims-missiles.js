@@ -114,7 +114,7 @@ function hitCityEffect(cityid) {
     makeNoise('hitcity')
     var explosion = document.querySelector('#city-' + cityid + ' .explosion')
     explosion.removeAttribute('src')
-    explosion.setAttribute('src', 'img/city-hit.gif')
+    explosion.setAttribute('src', 'img/city-hit.gif' + '?explod=' + cityid)
     setTimeout( function (e) {
         explosion.removeAttribute('src')
     }, 1250)
