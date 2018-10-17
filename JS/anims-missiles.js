@@ -14,12 +14,20 @@ function dropMissile(animationTime) {
     $('#bomb-' + columnNumber).animate({
         top: "+=550"
     }, animationTime, "linear", function () {
+        console.log($(this))
         $(this).remove()
+        document.querySelector('#toll').innerHTML = incrementToll()
     })
 }
 
 function randomNumGen() {
-    var randomNum = Math.floor(Math.random() * 4) + 1
+    var randomNum = Math.floor(Math.random() * 6) + 1
     return(randomNum)
+}
+
+function incrementToll() {
+    var previousToll = parseInt(document.querySelector('#toll').innerHTML)
+    var currentToll = Math.round(previousToll + ((Math.random()+1)*1E6))
+    return currentToll
 }
 
