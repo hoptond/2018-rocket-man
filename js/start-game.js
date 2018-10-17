@@ -13,3 +13,13 @@ document.querySelector('#splash-open-game').addEventListener('click', function()
     listenCityClick()
     listenKeypress()
 })
+
+document.querySelector('#instructions-tab').addEventListener('click', function() {
+    document.querySelector('#attribution').style.display = 'none'
+    document.querySelector('#splash-instructions').style.display = 'block'
+})
+
+document.querySelector('#attribution-tab').addEventListener('click', function() {
+    document.querySelector('#attribution').style.display = 'block'
+    document.querySelector('#splash-instructions').style.display = 'none'
+})
