@@ -24,3 +24,20 @@ function randomNumGen() {
     return(randomNum)
 }
 
+function explodeMissile() {
+    var cities = document.querySelectorAll('.city')
+
+    cities.forEach(function(city) {
+        city.addEventListener('click', function () {
+            var cityNumber = this.getAttribute('data-city')
+            var elementExists = document.getElementById('bomb-' + cityNumber);
+            if (elementExists != null) {
+                console.log('let do something')
+                $('#bomb-' + cityNumber).stop()
+            }
+
+        })
+    })//end forEach
+}
+
+explodeMissile()
