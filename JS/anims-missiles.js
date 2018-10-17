@@ -28,6 +28,7 @@ function dropMissile(animationTime) {
     }, animationTime, "linear", function () {
         missileHitsCity()
         $(this).remove()
+        document.querySelector('#toll').innerHTML = incrementToll()
     })
 }
 
@@ -101,3 +102,15 @@ function listenKeypressMissiles() {
 createBombEventHandler()
 
 listenKeypressMissiles()
+
+function randomNumGen() {
+    var randomNum = Math.ceil(Math.random() * 6)
+    return(randomNum)
+}
+
+function incrementToll() {
+    var previousToll = parseInt(document.querySelector('#toll').innerHTML)
+    var currentToll = Math.round(previousToll + ((Math.random()+1)*1E6))
+    return currentToll
+}
+
