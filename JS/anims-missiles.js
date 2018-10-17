@@ -13,7 +13,7 @@ repeatAnims()
 
 function repeatAnims() {
     setInterval(function() {
-        dropMissile(10000)
+        dropMissile(2000)
     }, 1000)
 }
 
@@ -33,7 +33,6 @@ function dropMissile(animationTime) {
 
 function missileHitsCity() {
     gameScore.score -= 1
-    console.log(gameScore.score)
     gameScore.toll += randomNumGen(10000)
     document.querySelector('#score').textContent = gameScore.score
     document.querySelector('#toll').textContent = gameScore.toll
@@ -64,7 +63,6 @@ function isHit() {
     if (hasBombs) {
         gameScore.score += hasBombs
         document.querySelector('#score').textContent = gameScore.score
-        console.log(gameScore.score)
         $(bombNumber).stop()
         var bombs = document.querySelectorAll(bombNumber)
         bombs.forEach(function (bomb) {
@@ -95,7 +93,6 @@ function listenKeypressMissiles() {
         }
         if (e.key in keys) {
             columnID = keys[e.key]
-            console.log('in listenKeypressMissiles ' + columnID)
             isHit()
         }
     })
