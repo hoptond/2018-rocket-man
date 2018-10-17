@@ -3,7 +3,7 @@ repeatAnims()
 
 function repeatAnims() {
     setInterval(function() {
-        dropMissile(1000)
+        dropMissile(scoreChangeSpeed())
     }, 1000)
 }
 
@@ -32,3 +32,7 @@ function incrementToll() {
     return currentToll
 }
 
+function scoreChangeSpeed() {
+    var currScore = parseInt(document.querySelector('#score').innerHTML)
+    return animationDuration = 2000/(1+(currScore*0.1))
+}
