@@ -22,16 +22,18 @@ function shootLaser($city) {
         $city.removeClass('laser')
     }, 300)
 }
-
-document.querySelectorAll('.city').forEach(function(city) {
-    console.log('city listen')
-    city.addEventListener('click', function() {
-        var sound = 'cheer' + city.dataset.city
-        makeNoise(sound)
-        var $city = $('#city-' + city.dataset.city)
-        shootLaser($city)
+function listenCityClick() {
+    document.querySelectorAll('.city').forEach(function(city) {
+        console.log('city listen')
+        city.addEventListener('click', function() {
+            var sound = 'cheer' + city.dataset.city
+            makeNoise(sound)
+            var $city = $('#city-' + city.dataset.city)
+            shootLaser($city)
+        })
     })
-})
+}
+
 
 function makeNoise(noise) {
     var audioObj = {
