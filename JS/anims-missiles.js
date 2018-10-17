@@ -9,7 +9,8 @@ function repeatAnims() {
 
 function dropMissile(animationTime) {
     var columnNumber = randomNumGen()
-    $('#pos-'+columnNumber).prepend('<img src="img/missile-drop-down-white.png" class="missile" id="bomb-'+ columnNumber +'">')
+    $('#pos-'+columnNumber).prepend('<img src="img/missile-drop-down-white.png" ' +
+        'class="missile" id="bomb-'+ columnNumber +'">')
 
     $('#bomb-' + columnNumber).animate({
         top: "+=550"
