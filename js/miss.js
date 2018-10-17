@@ -14,7 +14,7 @@ function onHitCity(cityid) {
     if(explosion.getAttribute('src') === null) {
         explosion.removeAttribute('src')
         explosion.setAttribute('src', 'img/city-hit.gif')
-        var timeout = setTimeout( function (e) {
+        setTimeout( function (e) {
             explosion.removeAttribute('src')
         }, 1250)
     }
