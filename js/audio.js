@@ -33,7 +33,6 @@ function listenCityClick() {
     })
 }
 
-
 function makeNoise(noise) {
     var audioObj = {
         cheer1: 'audio/cheer1.wav',
