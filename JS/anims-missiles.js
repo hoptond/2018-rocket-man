@@ -9,10 +9,11 @@ function repeatAnims() {
 
 function dropMissile(animationTime) {
     var columnNumber = randomNumGen()
-    $('#pos-'+columnNumber).prepend('<img src="img/missile-drop-down-white.png" ' +
-        'class="missile" id="bomb-'+ columnNumber +'">')
+    var $bomb = $('<img src="img/missile-drop-down-white.png" ' +
+        'class="missile bomb-'+ columnNumber +'">')
+    $('#pos-'+columnNumber).prepend($bomb)
 
-    $('#bomb-' + columnNumber).animate({
+    $bomb.animate({
         top: "+=550"
     }, animationTime, "linear", function () {
         $(this).remove()
@@ -30,10 +31,23 @@ function explodeMissile() {
     cities.forEach(function(city) {
         city.addEventListener('click', function () {
             var cityNumber = this.getAttribute('data-city')
-            var elementExists = document.getElementById('bomb-' + cityNumber);
-            if (elementExists != null) {
-                console.log('let do something')
-                $('#bomb-' + cityNumber).stop()
+            var bombNumber = '.bomb-' + cityNumber
+            var hasBombs = document.querySelectorAll(bombNumber).length
+            console.log(hasBombs)
+            if (hasBombs) {
+                $(bombNumber).stop()
+                var bombs = document.querySelectorAll(bombNumber)
+                bombs.forEach(function (bomb) {
+                        bomb.classList.remove(bombNumber)
+                        bomb.src = "img/missile-explosion.gif";
+                        setTimeout(function () {
+                            try {
+                                bomb.parentNode.removeChild(bomb);
+                            } catch (e) {
+                                // swuash errors where the bomb is already exploding and we dont need to remove it
+                            }
+                        }, 500)
+                })
             }
 
         })
