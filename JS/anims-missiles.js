@@ -2,9 +2,9 @@ setTimeout(repeatAnims, 500)
 repeatAnims()
 
 function repeatAnims() {
-    setInterval( function () {
+    setInterval(function() {
         dropMissile(1000)
-    }, 1000 )
+    }, 1000)
 }
 
 function dropMissile(animationTime) {
