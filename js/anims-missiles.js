@@ -44,7 +44,6 @@ function randomNumGen(topLimit) {
     return(randomNum)
 }
 
-
 function createBombEventHandler() {
     var cities = document.querySelectorAll('.city')
 
