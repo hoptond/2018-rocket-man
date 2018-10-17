@@ -44,7 +44,7 @@ function explodeMissile() {
                             try {
                                 bomb.parentNode.removeChild(bomb);
                             } catch (e) {
-                                // swuash errors where the bomb is already exploding and we dont need to remove it
+                                // squash errors where the bomb is already exploding and we don't need to remove it.
                             }
                         }, 500)
                 })
