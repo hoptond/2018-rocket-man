@@ -15,15 +15,24 @@ function listenKeypress() {
     })
 }
 
-var cities = document.querySelectorAll('.city')
-cities.forEach(function(city) {
-    city.addEventListener('click', function() {
-        var param = 'cheer' + city.dataset.city
-        makeNoise(param)
-        var $city = $('#city-' + city.dataset.city)
-        shootLaser($city)
+function shootLaser($city) {
+    var cityid = $city.data('city')
+    $city.addClass('laser')
+    setTimeout(function () {
+        $city.removeClass('laser')
+    }, 300)
+}
+function listenCityClick() {
+    document.querySelectorAll('.city').forEach(function(city) {
+        city.addEventListener('click', function() {
+            var sound = 'cheer' + city.dataset.city
+            makeNoise(sound)
+            var $city = $('#city-' + city.dataset.city)
+            shootLaser($city)
+        })
     })
-})
+}
+
 
 function makeNoise(noise) {
     var audioObj = {
