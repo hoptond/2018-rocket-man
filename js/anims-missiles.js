@@ -1,8 +1,5 @@
 //global scope
-
 var columnID = 0
-
-
 var gameScore = {
     score:0,
     toll:0
@@ -19,22 +16,21 @@ function repeatAnims() {
 
 function dropMissile(animationTime) {
     var columnNumber = randomNumGen(4)
-    var $bomb = $('<img src="img/missile-drop-down-white.png" ' +
-        'class="missile bomb-'+ columnNumber +'">')
-    $('#pos-'+columnNumber).prepend($bomb)
+    var $missile = $('<img src="img/missile-drop-down-white.png" ' +
+        'class="missile missile-'+ columnNumber +'">')
+    $('#pos-'+columnNumber).prepend($missile)
 
-    $bomb.animate({
+    $missile.animate({
         top: "+=550"
     }, animationTime, "linear", function () {
         missileHitsCity()
         $(this).remove()
-        document.querySelector('#toll').innerHTML = incrementToll()
     })
 }
 
 function missileHitsCity() {
     gameScore.score -= 1
-    gameScore.toll += randomNumGen(10000)
+    gameScore.toll += 10000
     document.querySelector('#score').textContent = gameScore.score
     document.querySelector('#toll').textContent = gameScore.toll
 }
@@ -44,7 +40,7 @@ function randomNumGen(topLimit) {
     return(randomNum)
 }
 
-function createBombEventHandler() {
+function createMissileEventHandler() {
     var cities = document.querySelectorAll('.city')
 
     cities.forEach(function(city) {
@@ -58,21 +54,21 @@ function createBombEventHandler() {
 
 function isHit() {
     var cityNumber = columnID
-    var bombNumber = '.bomb-' + cityNumber
-    var hasBombs = document.querySelectorAll(bombNumber).length
-    if (hasBombs) {
-        gameScore.score += hasBombs
+    var missileNumber = '.missile-' + cityNumber
+    var missiles = document.querySelectorAll(missileNumber)
+    var hasMissiles = document.querySelectorAll(missileNumber).length
+    if (hasMissiles) {
+        gameScore.score += hasMissiles
         document.querySelector('#score').textContent = gameScore.score
-        $(bombNumber).stop()
-        var bombs = document.querySelectorAll(bombNumber)
-        bombs.forEach(function (bomb) {
-            bomb.classList.remove(bombNumber)
-            bomb.src = "img/missile-explosion.gif";
+        $(missileNumber).stop()
+        missiles.forEach(function (missile) {
+            missile.classList.remove(missileNumber)
+            missile.src = "img/missile-explosion.gif";
             setTimeout(function () {
                 try {
-                    bomb.parentNode.removeChild(bomb);
+                    missile.parentNode.removeChild(missile);
                 } catch (e) {
-                    // squash errors where the bomb is already exploding and we don't need to remove it.
+                    // squash errors where the missile is already exploding and we don't need to remove it.
                 }
             }, 500)
         })
@@ -98,14 +94,6 @@ function listenKeypressMissiles() {
     })
 }
 
-createBombEventHandler()
-
+createMissileEventHandler()
 listenKeypressMissiles()
-
-
-function incrementToll() {
-    var previousToll = parseInt(document.querySelector('#toll').innerHTML)
-    var currentToll = Math.round(previousToll + ((Math.random()+1)*1E6))
-    return currentToll
-}
 
