@@ -6,3 +6,10 @@ $( window ).on( "load", function() {
         $('#splash-title').fadeIn(50)
     }, 800)
 })
+
+document.querySelector('#splash-open-game').addEventListener('click', function() {
+    document.querySelector('#splash-screen').style.display = 'none'
+    document.querySelector('main').style.display = 'block'
+    listenCityClick()
+    listenKeypress()
+})

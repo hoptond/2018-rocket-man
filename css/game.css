@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+/*Splash screen*/
+
+body {
+    font-family: 'Play', sans-serif;
+    color: #ffffff;
+}
+
+#splash-screen {
+    height: 800px;
+    width: 1000px;
+    margin: auto;
+    overflow: hidden;
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+}
+
+#splash-rocket-img {
+    width: 724px;
+    height: 232px;
+}
+
+#splash-title-rocket {
+    position: relative;
+    right: 1224px;
+    top: 50px;
+    width: 2000px;
+}
+
+#splash-flames {
+    height: 232px;
+    width: 500px;
+}
+
+#splash-title {
+    position: absolute;
+    text-align: center;
+    font-size: 9.6rem;
+    width: 1000px;
+    margin-top: 100px;
+    display: none;
+}
+
+#splash-open-game {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 50px auto 50px auto;
+    font-size: 3.2rem;
+    text-align: center;
+    border-style: solid;
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+    cursor: pointer;
+}
+
+#splash-bottom-wrapper {
+    position: relative;
+    top: 3px;
+}
+
+#splash-city {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+#splash-instructions {
+    width: 500px;
+    height: 400px;
+    float: left;
+    padding: 0 20px;
+    font-size: 1.9rem;
+    background-color: rgba(0,0,0,0.25);
+}
+
+#splash-background {
+    position: absolute;
+    width: 1000px;
+}
+
+/*Game screen*/
+
+main {
+    width: 1000px;
+    height: 800px;
+    margin: 0 auto;
+    background-color: #cccccc;
+    display: none;
+}
+
+.game-wrapper {
+    width: 1000px;
+    height: 600px;
+    margin: 0 auto;
+    overflow: auto;
+    background-image: url('../img/background.jpg');
+}
+
+.col {
+    position: relative;
+    width: 250px;
+    height: 600px;
+    float: left;
+}
+
+img.missile {
+    position: absolute;
+    width: 25px;
+    display: block;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.city {
+    width: 183px;
+    height: 600px;
+    display: block;
+    margin: 0 auto;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.city1 {
+    background-image: url('../img/cities-1.png');
+}
+
+.city1.laser {
+    background-image: url('../img/cities-1-laser.png');
+}
+
+.city2 {
+    background-image: url('../img/cities-2.png');
+}
+
+.city2.laser {
+    background-image: url('../img/cities-2-laser.png');
+}
+
+.city3 {
+    background-image: url('../img/cities-3.png');
+}
+
+.city3.laser {
+    background-image: url('../img/cities-3-laser.png');
+}
+
+.city4 {
+    background-image: url('../img/cities-4.png');
+}
+
+.city4.laser {
+    background-image: url('../img/cities-4-laser.png');
+}
+
+.keyboard-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.keyboard {
+    display: inline-block;
+    background-color: #000000;
+    color: #71b264;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 20px 98px 0;
+    text-align: center;
+    line-height: 50px;
+}
+
+.score-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.totals {
+    display: inline-block;
+    width: 150px;
+    padding: 0 10px;
+}
+
+.totals h2 {
+    font-size: 1.6rem;
+}
+
+.totals p {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.totals.score p {
+    background-color: #71b264;
+}
+
+.totals.toll p {
+    background-color: #b21123;
+}
+
+.start {
+    display: none;
+    background-color: #b21123;
+    color: #ffffff;
+    margin: 0 auto;
+    border-radius: 100%;
+    border: 4px solid #cccccc;
+    width: 100px;
+    height: 100px;
+    line-height: 90px;
+    text-align: center;
+}
