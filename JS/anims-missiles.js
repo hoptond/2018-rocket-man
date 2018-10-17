@@ -1,4 +1,8 @@
 //global scope
+
+var columnID = 0
+
+
 var gameScore = {
     score:0,
     toll:0
@@ -46,17 +50,15 @@ function createBombEventHandler() {
 
     cities.forEach(function(city) {
         city.addEventListener('click', function() {
-            var that = this
-            isHit(that)
+            columnID = this.getAttribute('data-city')
+            isHit()
         })
     })//end forEach
+
 }
 
-createBombEventHandler()
-
-
-function isHit(that) {
-    var cityNumber = that.getAttribute('data-city')
+function isHit() {
+    var cityNumber = columnID
     var bombNumber = '.bomb-' + cityNumber
     var hasBombs = document.querySelectorAll(bombNumber).length
     if (hasBombs) {
@@ -68,7 +70,6 @@ function isHit(that) {
         bombs.forEach(function (bomb) {
             bomb.classList.remove(bombNumber)
             bomb.src = "img/missile-explosion.gif";
-
             setTimeout(function () {
                 try {
                     bomb.parentNode.removeChild(bomb);
@@ -82,3 +83,24 @@ function isHit(that) {
         document.querySelector('#score').textContent = gameScore.score
     }
 }
+
+function listenKeypressMissiles() {
+    clicked = false
+    document.addEventListener('keypress', function(e) {
+        var keys = {
+            'q': '1',
+            'w': '2',
+            'e': '3',
+            'r': '4'
+        }
+        if (e.key in keys) {
+            columnID = keys[e.key]
+            console.log('in listenKeypressMissiles ' + columnID)
+            isHit()
+        }
+    })
+}
+
+createBombEventHandler()
+
+listenKeypressMissiles()
