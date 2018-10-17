@@ -26,7 +26,7 @@ function shootLaser($city) {
 var cities = document.querySelectorAll('.city')
 cities.forEach(function(city) {
     city.addEventListener('click', function() {
-        var param = 'cheer' + city.dataset.city
+        var sound = 'cheer' + city.dataset.city
         makeNoise(param)
         var $city = $('#city-' + city.dataset.city)
         shootLaser($city)
