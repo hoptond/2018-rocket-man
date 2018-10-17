@@ -13,7 +13,13 @@ function changeScore(value) {
 }
 
 function onHitCity(cityid) {
+    console.log('BOOM')
     makeNoise('hitcity')
+    var city = document.querySelector('#city-' + cityid)
+    city.innerHTML = '<img class="explosion" src="img/city-hit.gif">'
+    setTimeout( function (e) {
+        city.innerHTML = ''
+    }, 1250)
     incrementDeathToll()
 }
 
