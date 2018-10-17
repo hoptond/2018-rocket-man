@@ -45,7 +45,6 @@ function makeNoise(noise) {
         cheer3: 'audio/cheer3.mp3',
         cheer4: 'audio/cheer4.mp3'
     }
-    console.log(audioObj[noise])
     var audio = new Audio(audioObj[noise])
     audio.play()
 }
