@@ -103,10 +103,6 @@ createBombEventHandler()
 
 listenKeypressMissiles()
 
-function randomNumGen() {
-    var randomNum = Math.ceil(Math.random() * 6)
-    return(randomNum)
-}
 
 function incrementToll() {
     var previousToll = parseInt(document.querySelector('#toll').innerHTML)
