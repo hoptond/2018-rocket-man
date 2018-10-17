@@ -13,14 +13,11 @@ function changeScore(value) {
 }
 
 function onHitCity(cityid) {
-    console.log('BOOM')
     makeNoise('hitcity')
     var explosion = document.querySelector('#city-' + cityid + ' .explosion')
     if(explosion.getAttribute('src') === null) {
         explosion.removeAttribute('src')
         explosion.setAttribute('src', 'img/city-hit.gif')
-        console.log(explosion.getAttribute('src'))
-        console.log(explosion.src)
         var timeout = setTimeout( function (e) {
             explosion.removeAttribute('src')
         }, 1250)
