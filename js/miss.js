@@ -1,10 +1,6 @@
-
-
-
 function onMissLaser() {
     makeNoise('miss')
     changeScore(-5)
-
 }
 
 function changeScore(value) {
@@ -29,4 +25,3 @@ function incrementDeathToll() {
     var toll = document.querySelector('#toll')
     toll.textContent = parseInt(toll.textContent) + 1000000
 }
-
