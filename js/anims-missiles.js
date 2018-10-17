@@ -10,7 +10,8 @@ repeatAnims()
 
 function repeatAnims() {
     setInterval(function() {
-        dropMissile(2000)
+        var animationTime = animationChangeSpeed()
+        dropMissile(animationTime)
     }, 1000)
 }
 
@@ -92,6 +93,18 @@ function listenKeypressMissiles() {
             isHit()
         }
     })
+}
+
+// Increases animation speed based upon gameScore.score
+// We call this function inside repeatAnim function
+function animationChangeSpeed() {
+    var animationDuration = 3000
+    if (gameScore.score > 0) {
+        animationDuration = 3000 / (1 + (gameScore.score * 0.03))
+    } else {
+        animationDuration = 3000
+    }
+    return animationDuration
 }
 
 createMissileEventHandler()
