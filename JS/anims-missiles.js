@@ -19,7 +19,7 @@ function dropMissile(animationTime) {
 }
 
 function randomNumGen() {
-    var randomNum = Math.floor(Math.random() * 4) + 1
+    var randomNum = Math.ceil(Math.random() * 4)
     return(randomNum)
 }
 
