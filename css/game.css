@@ -73,13 +73,30 @@ body {
     float: left;
 }
 
-#splash-instructions {
+#text-box {
     width: 500px;
     height: 400px;
     float: left;
     padding: 0 20px;
     font-size: 1.9rem;
     background-color: rgba(0,0,0,0.25);
+}
+
+#attribution {
+    display: none;
+}
+
+.text-box-tab-wrapper {
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(0,0,0,0.25);
+    left: 500px;
+}
+
+.text-box-tab {
+    float: left;
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
 #splash-background {
