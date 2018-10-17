@@ -23,11 +23,15 @@ function shootLaser($city) {
     }, 300)
 }
 function listenCityClick() {
-    document.querySelectorAll('.city').forEach(function(city) {
+    var cities = Array.prototype.slice.call(document.querySelectorAll('.city'))
+    cities.forEach(function(city) {
         city.addEventListener('click', function() {
-            var sound = 'cheer' + city.dataset.city
+            //we get the city id via the attribute instead of just using the dataset, because IE does not support datasets.
+            //thanks, bill gates!
+            var cityid = city.getAttribute('data-city')
+            var sound = 'cheer' + cityid
             makeNoise(sound)
-            var $city = $('#city-' + city.dataset.city)
+            var $city = $('#city-' + cityid)
             shootLaser($city)
         })
     })
@@ -41,6 +45,7 @@ function makeNoise(noise) {
         cheer3: 'audio/cheer3.wav',
         cheer4: 'audio/cheer4.wav'
     }
+    console.log(audioObj[noise])
     var audio = new Audio(audioObj[noise])
     audio.play()
 }
