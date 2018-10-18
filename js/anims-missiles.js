@@ -80,8 +80,6 @@ function checkForMissiles() {
     isHit()
 }
 
-
-
 /**
  * If a missile is hit stop the anim and replace the missile img with explosion img - increment the deflects score.  If it is a miss decrement the deflects score and render on the page
  */
@@ -122,7 +120,6 @@ function isHit() {
  * @param success Whether firing this laser produced a cheer or a boo
  * @param cityid The id of the given city
  */
-
 function laserResultSound(success, cityid) {
     if(success) {
         var sound = 'cheer' + cityid
@@ -153,11 +150,18 @@ function listenKeypressMissiles() {
     })
 }
 
+/*
+ * This changes the speed of the missiles based upon the player's current score.
+ */
 function animationChangeSpeed() {
     return gameScore.score > 0 ? 3000 / (1 + (gameScore.score * 0.03)) : 3000
 }
 
-
+/*
+ * This plays the explosion effect when a missile hits the city.
+ *
+ * @param cityid The city being exploded.
+ */
 function hitCityEffect(cityid) {
     makeNoise('hitcity')
     var explosion = document.querySelector('#city-' + cityid + ' .explosion')
@@ -168,10 +172,6 @@ function hitCityEffect(cityid) {
         explosion.setAttribute('src', 'img/blank.png')
     }, 1250)
 }
-
-
-
-
 
 document.querySelector('#start').addEventListener('click', function(e) {
     repeatAnims()
