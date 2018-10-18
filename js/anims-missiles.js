@@ -13,7 +13,7 @@ repeatAnims()
 function repeatAnims() {
     setInterval(function() {
         dropMissile(2000)
-    }, 500)
+    }, 2000)
 }
 
 function dropMissile(animationTime) {
@@ -63,6 +63,8 @@ function isHit() {
         gameScore.score += hasMissiles
         document.querySelector('#score').textContent = gameScore.score
         $(missileNumber).stop()
+        var sound = 'cheer' + columnID
+        makeNoise(sound)
         missiles.forEach(function (missile) {
             missile.classList.remove(missileNumber)
             missile.src = "img/missile-explosion.gif";
@@ -75,6 +77,7 @@ function isHit() {
             }, 500)
         })
     } else {
+        makeNoise('miss')
         gameScore.score -= 1
         document.querySelector('#score').textContent = gameScore.score
     }

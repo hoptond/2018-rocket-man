@@ -7,8 +7,6 @@ function listenKeypress() {
             'r': '4'
         }
         if (e.key in keys) {
-            var sound = 'cheer' + keys[e.key]
-            makeNoise(sound)
             var $city = $('#city-' + keys[e.key])
             shootLaser($city)
         }
@@ -25,8 +23,6 @@ function shootLaser($city) {
 function listenCityClick() {
     document.querySelectorAll('.city').forEach(function(city) {
         city.addEventListener('click', function() {
-            var sound = 'cheer' + city.dataset.city
-            makeNoise(sound)
             var $city = $('#city-' + city.dataset.city)
             shootLaser($city)
         })
