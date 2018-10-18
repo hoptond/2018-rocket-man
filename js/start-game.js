@@ -12,7 +12,6 @@ document.querySelector('#splash-open-game').addEventListener('click', function()
     document.querySelector('main').style.display = 'block'
     listenKeypressMissiles()
     createMissileClickHandler()
-    //listenKeyPress()
 })
 
 document.querySelector('#instructions-tab').addEventListener('click', function() {

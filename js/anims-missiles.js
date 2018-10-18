@@ -75,6 +75,8 @@ function createMissileClickHandler() {
  */
 function checkForMissiles() {
     columnID = this.getAttribute('data-city')
+    $city = $('#city-' +  columnID)
+    shootLaser($city)
     isHit()
 }
 
@@ -145,6 +147,8 @@ function listenKeypressMissiles() {
         if (e.key in keys) {
             columnID = keys[e.key]
             isHit()
+            $city = $('#city-' +  columnID)
+            shootLaser($city)
         }
     })
 }
