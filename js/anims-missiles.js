@@ -8,6 +8,8 @@ var gameScore = {
     toll:0
 }
 
+var impacts = [0, 0, 0, 0]
+
 setTimeout(repeatAnims, 500)
 repeatAnims()
 
@@ -113,9 +115,10 @@ function incrementToll() {
 function hitCityEffect(cityid) {
     makeNoise('hitcity')
     var explosion = document.querySelector('#city-' + cityid + ' .explosion')
-    explosion.removeAttribute('src')
+    console.log(impacts[cityid - 1])
+    clearTimeout(impacts[cityid - 1])
     explosion.setAttribute('src', 'img/city-hit.gif' + '?explod=' + cityid)
-    setTimeout( function (e) {
+    impacts[cityid - 1] = setTimeout( function (e) {
         explosion.removeAttribute('src')
     }, 1250)
 }
