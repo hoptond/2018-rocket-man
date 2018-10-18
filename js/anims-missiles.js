@@ -1,4 +1,3 @@
-//global scope
 var columnID = 0
 var gameScore = {
     score:0,
