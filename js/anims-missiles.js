@@ -33,7 +33,8 @@ function repeatAnims() {
 }
 
 /**
- * 
+ * Function decrements game score and increments death toll and renders the scores on the page when a city is hit
+ * @param that Had to pass the $(this) value into missileHitsCity() as 'that' because 'this' is a reserved word and therefore cannot pass 'this' as a parameter
  */
 function missileHitsCity(that) {
     gameScore.score -= 1
@@ -43,11 +44,18 @@ function missileHitsCity(that) {
     that.remove()
 }
 
+/**
+ * generates a random number
+ * @param int topLimit the max desired random number to return
+ */
 function randomNumGen(topLimit) {
     return Math.ceil(Math.random() * topLimit)
 }
 
-function createMissileEventHandler() {
+/**
+ * creates click handler on .city elems
+ */
+function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
 
     cities.forEach(function(city) {
@@ -56,9 +64,10 @@ function createMissileEventHandler() {
             isHit()
         })
     })//end forEach
-
 }
-
+/**
+ * If a missile is hit stop the anim and replace the missile img with explosion img - increment the deflects score.  If it is a miss decrement the deflects score and render on the page
+ */
 function isHit() {
     var missileNumber = '.missile-' + columnID
     var missiles = document.querySelectorAll(missileNumber)
@@ -84,6 +93,9 @@ function isHit() {
     }
 }
 
+/**
+ * listens for key presses and re-assigns values based on key pressed.  Global var columID is re-assigned based on value of key pressed
+ */
 function listenKeypressMissiles() {
     document.addEventListener('keypress', function(e) {
         var keys = {
@@ -99,6 +111,6 @@ function listenKeypressMissiles() {
     })
 }
 
-createMissileEventHandler()
+createMissileClickHandler()
 listenKeypressMissiles()
 repeatAnims()
