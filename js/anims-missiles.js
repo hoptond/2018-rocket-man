@@ -16,7 +16,6 @@ function dropMissile(animationTime) {
     var $missile = $('<img src="img/missile-drop-down-white.png" ' +
         'class="missile missile-'+ columnNumber +'">')
     $('#pos-'+columnNumber).prepend($missile)
-
     $missile.animate({
         top: "+=550"
     }, animationTime, "linear", function() {
