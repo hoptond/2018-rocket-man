@@ -19,8 +19,7 @@ function dropMissile(animationTime) {
     $missile.animate({
         top: "+=550"
     }, animationTime, "linear", function () {
-        missileHitsCity()
-        $(this).remove()
+        missileHitsCity($(this))
     })
 }
 
@@ -36,11 +35,12 @@ function repeatAnims() {
 /**
  * 
  */
-function missileHitsCity() {
+function missileHitsCity(that) {
     gameScore.score -= 1
     gameScore.toll += 10000
     document.querySelector('#score').textContent = gameScore.score
     document.querySelector('#toll').textContent = gameScore.toll
+    that.remove()
 }
 
 function randomNumGen(topLimit) {
