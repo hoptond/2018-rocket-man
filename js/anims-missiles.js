@@ -117,6 +117,6 @@ function hitCityEffect(cityid) {
     //we append a random query string to make the gif reliably start at zero when a new explosion occurs.
     explosion.setAttribute('src', 'img/city-hit.gif' + '?explod=' + Math.random(4))
     impacts[cityid - 1] = setTimeout( function (e) {
-        explosion.removeAttribute('src')
+        explosion.setAttribute('src', 'img/blank.png')
     }, 1250)
 }
