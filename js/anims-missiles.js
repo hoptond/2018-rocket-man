@@ -55,8 +55,8 @@ function randomNumGen(topLimit) {
  */
 function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
-
-    cities.forEach(function(city) {
+    // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
+    Array.prototype.forEach.call(cities, function(city) {
         city.addEventListener('click', function() {
             columnID = this.getAttribute('data-city')
             isHit()
@@ -74,7 +74,8 @@ function isHit() {
         gameScore.score += hasMissiles
         document.querySelector('#score').textContent = gameScore.score
         $(missileNumber).stop()
-        missiles.forEach(function(missile) {
+        // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
+        Array.prototype.forEach.call(missiles, function(missile) {
             missile.classList.remove(missileNumber)
             missile.src = "img/missile-explosion.gif";
             setTimeout(function() {
