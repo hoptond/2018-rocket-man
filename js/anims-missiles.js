@@ -18,7 +18,7 @@ function dropMissile(animationTime) {
 
     $missile.animate({
         top: "+=550"
-    }, animationTime, "linear", function () {
+    }, animationTime, "linear", function() {
         missileHitsCity($(this))
     })
 }
@@ -67,10 +67,10 @@ function isHit() {
         gameScore.score += hasMissiles
         document.querySelector('#score').textContent = gameScore.score
         $(missileNumber).stop()
-        missiles.forEach(function (missile) {
+        missiles.forEach(function(missile) {
             missile.classList.remove(missileNumber)
             missile.src = "img/missile-explosion.gif";
-            setTimeout(function () {
+            setTimeout(function() {
                 try {
                     missile.parentNode.removeChild(missile);
                 } catch (e) {
