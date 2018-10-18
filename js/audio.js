@@ -23,8 +23,8 @@ function shootLaser($city) {
     }, 300)
 }
 function listenCityClick() {
-    var cities = Array.prototype.slice.call(document.querySelectorAll('.city'))
-    cities.forEach(function(city) {
+    var cities = document.querySelectorAll('.city')
+    Array.prototype.forEach.call(cities, function(city) {
         city.addEventListener('click', function() {
             //we get the city id via the attribute instead of just using the dataset, because IE does not support datasets.
             //thanks, bill gates!
