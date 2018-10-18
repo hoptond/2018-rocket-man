@@ -8,7 +8,6 @@ var gameScore = {
  * Function to prepend a missile to the html and then animate top to bottom
  * @param int animationTime the speed at which to drop a single missle
  */
-
 function dropMissile(animationTime) {
     var columnNumber = randomNumGen(4)
     var $missile = $('<img src="img/missile-drop-down-white.png" ' +
