@@ -120,8 +120,6 @@ function animationChangeSpeed() {
     var animationDuration = 3000
     if (gameScore.score > 0) {
         animationDuration = 3000 / (1 + (gameScore.score * 0.03))
-    } else {
-        animationDuration = 3000
     }
     return animationDuration
 }
