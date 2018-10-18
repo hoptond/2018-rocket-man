@@ -64,7 +64,7 @@ function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
     // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
     Array.prototype.forEach.call(cities, function(city) {
-        city.addEventListener('click', onUserInput())
+        city.addEventListener('click', onUserInput)
     })
 }
 
