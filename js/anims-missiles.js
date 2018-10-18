@@ -111,6 +111,9 @@ function listenKeypressMissiles() {
     })
 }
 
-createMissileClickHandler()
-listenKeypressMissiles()
-repeatAnims()
+document.querySelector('#start').addEventListener('click', function(e) {
+    createMissileClickHandler()
+    listenKeypressMissiles()
+    repeatAnims()
+    document.querySelector('#start').style.display = 'none'
+})
