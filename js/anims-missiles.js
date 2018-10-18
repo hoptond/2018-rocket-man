@@ -13,7 +13,7 @@ repeatAnims()
 function repeatAnims() {
     setInterval(function() {
         dropMissile(2000)
-    }, 900)
+    }, 500)
 }
 
 function dropMissile(animationTime) {
