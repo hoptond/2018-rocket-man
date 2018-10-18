@@ -94,7 +94,6 @@ function isHit() {
         $(missileNumber).stop()
         // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
         Array.prototype.forEach.call(missiles, function(missile) {
-            missiles.forEach(function (missile) {
                 missile.classList.remove(missileNumber)
                 missile.src = "img/missile-explosion.gif";
                 setTimeout(function() {
@@ -105,7 +104,6 @@ function isHit() {
                     }
                 }, 500)
             })
-        })
     } else if (missilesActive) {
         success = false
         gameScore.score -= 1
