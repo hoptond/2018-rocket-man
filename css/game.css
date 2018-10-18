@@ -230,4 +230,5 @@ img.missile {
     height: 100px;
     line-height: 90px;
     text-align: center;
+    cursor: pointer;
 }
