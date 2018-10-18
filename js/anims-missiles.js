@@ -36,12 +36,12 @@ function repeatAnims() {
  * Function decrements game score and increments death toll and renders the scores on the page when a city is hit
  * @param that Had to pass the $(this) value into missileHitsCity() as 'that' because 'this' is a reserved word and therefore cannot pass 'this' as a parameter
  */
-function missileHitsCity(that) {
+function missileHitsCity($missile) {
     gameScore.score -= 1
     gameScore.toll += 10000
     document.querySelector('#score').textContent = gameScore.score
     document.querySelector('#toll').textContent = gameScore.toll
-    that.remove()
+    $missile.remove()
 }
 
 /**
