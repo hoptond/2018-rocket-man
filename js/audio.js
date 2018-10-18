@@ -1,6 +1,6 @@
 function shootLaser($city) {
     $city.addClass('laser')
-    setTimeout(function () {
+    setTimeout(function() {
         $city.removeClass('laser')
     }, 300)
 }
