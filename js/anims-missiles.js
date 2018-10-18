@@ -117,11 +117,7 @@ function listenKeypressMissiles() {
  * We call this function inside repeatAnim function
  */
 function animationChangeSpeed() {
-    var animationDuration = 3000
-    if (gameScore.score > 0) {
-        return 3000 / (1 + (gameScore.score * 0.03))
-    }
-    return animationDuration
+    return gameScore.score > 0 ? 3000 / (1 + (gameScore.score * 0.03)) : 3000
 }
 
 createMissileClickHandler()
