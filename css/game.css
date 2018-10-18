@@ -73,7 +73,7 @@ body {
     float: left;
 }
 
-#text-box {
+#attribute-text-container {
     width: 500px;
     height: 400px;
     float: left;
@@ -105,6 +105,10 @@ body {
     width: 1000px;
 }
 
+#instructions-tab.active,
+#attribution-tab.active {
+    color: hotpink;
+}
 /*Game screen*/
 
 main {
