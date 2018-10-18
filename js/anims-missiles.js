@@ -170,7 +170,6 @@ function hitCityEffect(cityid) {
 
 
 document.querySelector('#start').addEventListener('click', function(e) {
-    createMissileClickHandler()
     repeatAnims()
     missilesActive = true
     var cities = document.querySelector('.city')

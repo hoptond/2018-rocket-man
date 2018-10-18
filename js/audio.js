@@ -22,18 +22,18 @@ function shootLaser($city) {
         $city.removeClass('laser')
     }, 300)
 }
-function listenCityClick() {
-    var cities = document.querySelectorAll('.city')
-    Array.prototype.forEach.call(cities, function(city) {
-        city.addEventListener('click', function() {
-            //we get the city id via the attribute instead of just using the dataset, because IE does not support datasets.
-            //thanks, bill gates!
-            var $city = $('#city-' + city.getAttribute('data-city'))
-            isHit()
-            shootLaser($city)
-        })
-    })
-}
+// function listenCityClick() {
+//     var cities = document.querySelectorAll('.city')
+//     Array.prototype.forEach.call(cities, function(city) {
+//         city.addEventListener('click', function() {
+//             //we get the city id via the attribute instead of just using the dataset, because IE does not support datasets.
+//             //thanks, bill gates!
+//             var $city = $('#city-' + city.getAttribute('data-city'))
+//             isHit()
+//             shootLaser($city)
+//         })
+//     })
+// }
 
 function makeNoise(noise) {
     var audioObj = {
