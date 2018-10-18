@@ -7,8 +7,6 @@ function listenKeypress() {
             'r': '4'
         }
         if (e.key in keys) {
-            var sound = 'cheer' + keys[e.key]
-            makeNoise(sound)
             var $city = $('#city-' + keys[e.key])
             shootLaser($city)
         }
@@ -28,10 +26,7 @@ function listenCityClick() {
         city.addEventListener('click', function() {
             //we get the city id via the attribute instead of just using the dataset, because IE does not support datasets.
             //thanks, bill gates!
-            var cityid = city.getAttribute('data-city')
-            var sound = 'cheer' + cityid
-            makeNoise(sound)
-            var $city = $('#city-' + cityid)
+            var $city = $('#city-' + city.dataset.city)
             shootLaser($city)
         })
     })
@@ -42,7 +37,9 @@ function makeNoise(noise) {
         cheer1: 'audio/cheer1.mp3',
         cheer2: 'audio/cheer2.mp3',
         cheer3: 'audio/cheer3.mp3',
-        cheer4: 'audio/cheer4.mp3'
+        cheer4: 'audio/cheer4.mp3',
+        hitcity: 'audio/hit_city.mp3',
+        miss: 'audio/laser_miss.mp3'
     }
     var audio = new Audio(audioObj[noise])
     audio.play()

@@ -101,7 +101,7 @@ main {
     width: 1000px;
     height: 600px;
     margin: 0 auto;
-    overflow: auto;
+
     background-image: url('../img/background.jpg');
 }
 
@@ -117,7 +117,6 @@ img.missile {
     z-index: 10;
     width: 25px;
     display: block;
-    margin: 0 auto;
     left: 50%;
     transform: translateX(-50%);
     top: -100px;
@@ -133,6 +132,14 @@ img.missile {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.explosion {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+
 }
 
 .city1 {

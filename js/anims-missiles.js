@@ -4,6 +4,8 @@ var gameScore = {
     toll:0
 }
 
+var impacts = [0, 0, 0, 0]
+
 /**
  * Function to prepend a missile to the html and then animate top to bottom
  * @param int animationTime the speed at which to drop a single missle
@@ -17,7 +19,7 @@ function dropMissile(animationTime) {
     $missile.animate({
         top: "+=550"
     }, animationTime, "linear", function() {
-        missileHitsCity($(this))
+        missileHitsCity($(this), columnNumber)
     })
 }
 
@@ -34,14 +36,17 @@ function repeatAnims() {
 
 /**
  * Function decrements game score and increments death toll and renders the scores on the page when a city is hit
- * @param that Had to pass the $(this) value into missileHitsCity() as 'that' because 'this' is a reserved word and therefore cannot pass 'this' as a parameter
+ * @param $missile The JQUERY object that refers to the missile hitting the city
+ * @param cityid the id of the the city that is being hit by the missile
  */
-function missileHitsCity($missile) {
+function missileHitsCity($missile, cityid) {
     gameScore.score -= 1
     gameScore.toll += 10000
     document.querySelector('#score').textContent = gameScore.score
     document.querySelector('#toll').textContent = gameScore.toll
+    hitCityEffect(cityid)
     $missile.remove()
+
 }
 
 /**
@@ -78,21 +83,27 @@ function isHit() {
         $(missileNumber).stop()
         // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
         Array.prototype.forEach.call(missiles, function(missile) {
-            missile.classList.remove(missileNumber)
-            missile.src = "img/missile-explosion.gif";
-            setTimeout(function() {
-                try {
-                    missile.parentNode.removeChild(missile);
-                } catch (e) {
-                    // squash errors where the missile is already exploding and we don't need to remove it.
-                }
-            }, 500)
+            var sound = 'cheer' + columnID
+            makeNoise(sound)
+            missiles.forEach(function (missile) {
+                missile.classList.remove(missileNumber)
+                missile.src = "img/missile-explosion.gif";
+                setTimeout(function() {
+                    try {
+                        missile.parentNode.removeChild(missile);
+                    } catch (e) {
+                        // squash errors where the missile is already exploding and we don't need to remove it.
+                    }
+                }, 500)
+            })
         })
     } else {
+        makeNoise('miss')
         gameScore.score -= 1
         document.querySelector('#score').textContent = gameScore.score
     }
 }
+
 
 /**
  * listens for key presses and re-assigns values based on key pressed.  Global var columID is re-assigned based on value of key pressed
@@ -122,4 +133,16 @@ function animationChangeSpeed() {
 
 createMissileClickHandler()
 listenKeypressMissiles()
+
 repeatAnims()
+
+function hitCityEffect(cityid) {
+    makeNoise('hitcity')
+    var explosion = document.querySelector('#city-' + cityid + ' .explosion')
+    clearTimeout(impacts[cityid - 1])
+    //we append a random query string to make the gif reliably start at zero when a new explosion occurs.
+    explosion.setAttribute('src', 'img/city-hit.gif' + '?explode=' + Math.random(4))
+    impacts[cityid - 1] = setTimeout(function (e) {
+        explosion.setAttribute('src', 'img/blank.png')
+    }, 1250)
+}
