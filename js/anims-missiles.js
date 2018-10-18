@@ -44,8 +44,7 @@ function missileHitsCity(that) {
 }
 
 function randomNumGen(topLimit) {
-    var randomNum = Math.ceil(Math.random() * topLimit)
-    return randomNum
+    return Math.ceil(Math.random() * topLimit)
 }
 
 function createMissileEventHandler() {
