@@ -101,13 +101,6 @@ function listenKeypressMissiles() {
 createMissileEventHandler()
 listenKeypressMissiles()
 
-
-function incrementToll() {
-    var previousToll = parseInt(document.querySelector('#toll').innerHTML)
-    var currentToll = Math.round(previousToll + ((Math.random()+1)*1E6))
-    return currentToll
-}
-
 repeatAnims()
 
 function hitCityEffect(cityid) {
