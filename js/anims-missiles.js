@@ -6,7 +6,7 @@ var gameScore = {
 }
 
 /**
- * Function to prepend a misssle to the html and then animate top to bottom
+ * Function to prepend a missile to the html and then animate top to bottom
  * @param int animationTime the speed at which to drop a single missle
  */
 
