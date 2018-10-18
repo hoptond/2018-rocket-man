@@ -1,3 +1,4 @@
+var missilesActive = false
 var columnID = 0
 var gameScore = {
     score:0,
@@ -64,12 +65,21 @@ function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
     // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
     Array.prototype.forEach.call(cities, function(city) {
-        city.addEventListener('click', function() {
-            columnID = this.getAttribute('data-city')
-            isHit()
-        })
-    })//end forEach
+        city.addEventListener('click', checkForMissiles)
+    })
 }
+
+/**
+ * This was previously an anonymous function given its own function. It sets the column id and executes the isHit()
+ * method to scan for any missiles in the column
+ */
+function checkForMissiles() {
+    columnID = this.getAttribute('data-city')
+    isHit()
+}
+
+
+
 /**
  * If a missile is hit stop the anim and replace the missile img with explosion img - increment the deflects score.  If it is a miss decrement the deflects score and render on the page
  */
@@ -77,14 +87,13 @@ function isHit() {
     var missileNumber = '.missile-' + columnID
     var missiles = document.querySelectorAll(missileNumber)
     var hasMissiles = missiles.length
+    var success = true
     if (hasMissiles) {
         gameScore.score += hasMissiles
         document.querySelector('#score').textContent = gameScore.score
         $(missileNumber).stop()
         // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
         Array.prototype.forEach.call(missiles, function(missile) {
-            var sound = 'cheer' + columnID
-            makeNoise(sound)
             missiles.forEach(function (missile) {
                 missile.classList.remove(missileNumber)
                 missile.src = "img/missile-explosion.gif";
@@ -97,10 +106,27 @@ function isHit() {
                 }, 500)
             })
         })
-    } else {
-        makeNoise('miss')
+    } else if (missilesActive) {
+        success = false
         gameScore.score -= 1
         document.querySelector('#score').textContent = gameScore.score
+    }
+    laserResultSound(success, columnID)
+}
+
+/*
+ * The sound produced from a city when the user presses a button.
+ *
+ * @param success Whether firing this laser produced a cheer or a boo
+ * @param cityid The id of the given city
+ */
+
+function laserResultSound(success, cityid) {
+    if(success) {
+        var sound = 'cheer' + cityid
+        makeNoise(sound)
+    } else {
+        makeNoise('miss')
     }
 }
 
@@ -123,18 +149,10 @@ function listenKeypressMissiles() {
     })
 }
 
-/**
- * Increases animation speed based upon gameScore.score
- * We call this function inside repeatAnim function
- */
 function animationChangeSpeed() {
     return gameScore.score > 0 ? 3000 / (1 + (gameScore.score * 0.03)) : 3000
 }
 
-createMissileClickHandler()
-listenKeypressMissiles()
-
-repeatAnims()
 
 function hitCityEffect(cityid) {
     makeNoise('hitcity')
@@ -146,3 +164,18 @@ function hitCityEffect(cityid) {
         explosion.setAttribute('src', 'img/blank.png')
     }, 1250)
 }
+
+
+
+
+
+document.querySelector('#start').addEventListener('click', function(e) {
+    createMissileClickHandler()
+    repeatAnims()
+    missilesActive = true
+    var cities = document.querySelector('.city')
+     Array.prototype.forEach.call(cities, function(city) {
+         city.removeEventListener('click', checkForMissiles)
+     })
+    document.querySelector('#start').style.display = 'none'
+})

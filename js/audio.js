@@ -1,4 +1,4 @@
-function listenKeypress() {
+function listenKeyPress() {
     document.addEventListener('keypress', function(e) {
         var keys = {
             'q': '1',
@@ -8,10 +8,12 @@ function listenKeypress() {
         }
         if (e.key in keys) {
             var $city = $('#city-' + keys[e.key])
+            isHit()
             shootLaser($city)
         }
     })
 }
+
 
 function shootLaser($city) {
     var cityid = $city.data('city')
@@ -26,7 +28,8 @@ function listenCityClick() {
         city.addEventListener('click', function() {
             //we get the city id via the attribute instead of just using the dataset, because IE does not support datasets.
             //thanks, bill gates!
-            var $city = $('#city-' + city.dataset.city)
+            var $city = $('#city-' + city.getAttribute('data-city'))
+            isHit()
             shootLaser($city)
         })
     })
