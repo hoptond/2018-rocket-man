@@ -206,6 +206,6 @@ document.querySelector('#start').addEventListener('click', function(e) {
     var cities = document.querySelector('.city')
     Array.prototype.forEach.call(cities, function(city) {
          city.removeEventListener('click', onUserInput)
-     })
+    })
     document.querySelector('#start').style.display = 'none'
 })
