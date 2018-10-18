@@ -5,12 +5,6 @@ var gameScore = {
     toll:0
 }
 
-function repeatAnims() {
-    setInterval(function() {
-        dropMissile(2000)
-    }, 500)
-}
-
 function dropMissile(animationTime) {
     var columnNumber = randomNumGen(4)
     var $missile = $('<img src="img/missile-drop-down-white.png" ' +
@@ -23,6 +17,12 @@ function dropMissile(animationTime) {
         missileHitsCity()
         $(this).remove()
     })
+}
+
+function repeatAnims() {
+    setInterval(function() {
+        dropMissile(2000)
+    }, 500)
 }
 
 function missileHitsCity() {
