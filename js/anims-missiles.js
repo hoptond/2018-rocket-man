@@ -5,6 +5,11 @@ var gameScore = {
     toll:0
 }
 
+/**
+ * Function to prepend a misssle to the html and then animate top to bottom
+ * @param int animationTime the speed at which to drop a single missle
+ */
+
 function dropMissile(animationTime) {
     var columnNumber = randomNumGen(4)
     var $missile = $('<img src="img/missile-drop-down-white.png" ' +
@@ -19,12 +24,18 @@ function dropMissile(animationTime) {
     })
 }
 
+/**
+ * Function call drops missile every 500ms
+ */
 function repeatAnims() {
     setInterval(function() {
         dropMissile(2000)
     }, 500)
 }
 
+/**
+ * 
+ */
 function missileHitsCity() {
     gameScore.score -= 1
     gameScore.toll += 10000
@@ -52,7 +63,7 @@ function createMissileEventHandler() {
 function isHit() {
     var missileNumber = '.missile-' + columnID
     var missiles = document.querySelectorAll(missileNumber)
-    var hasMissiles = document.querySelectorAll(missileNumber).length
+    var hasMissiles = missiles.length
     if (hasMissiles) {
         gameScore.score += hasMissiles
         document.querySelector('#score').textContent = gameScore.score
