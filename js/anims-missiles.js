@@ -5,13 +5,10 @@ var gameScore = {
     toll:0
 }
 
-setTimeout(repeatAnims, 500)
-repeatAnims()
-
 function repeatAnims() {
     setInterval(function() {
         dropMissile(2000)
-    }, 1000)
+    }, 500)
 }
 
 function dropMissile(animationTime) {
@@ -37,7 +34,7 @@ function missileHitsCity() {
 
 function randomNumGen(topLimit) {
     var randomNum = Math.ceil(Math.random() * topLimit)
-    return(randomNum)
+    return randomNum
 }
 
 function createMissileEventHandler() {
@@ -53,8 +50,7 @@ function createMissileEventHandler() {
 }
 
 function isHit() {
-    var cityNumber = columnID
-    var missileNumber = '.missile-' + cityNumber
+    var missileNumber = '.missile-' + columnID
     var missiles = document.querySelectorAll(missileNumber)
     var hasMissiles = document.querySelectorAll(missileNumber).length
     if (hasMissiles) {
@@ -79,7 +75,6 @@ function isHit() {
 }
 
 function listenKeypressMissiles() {
-    clicked = false
     document.addEventListener('keypress', function(e) {
         var keys = {
             'q': '1',
@@ -96,4 +91,4 @@ function listenKeypressMissiles() {
 
 createMissileEventHandler()
 listenKeypressMissiles()
-
+repeatAnims()
