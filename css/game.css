@@ -73,7 +73,7 @@ body {
     float: left;
 }
 
-#splash-instructions {
+#attribute-text-container {
     width: 500px;
     height: 400px;
     float: left;
@@ -82,14 +82,37 @@ body {
     background-color: rgba(0,0,0,0.25);
 }
 
+#attribution {
+    display: none;
+}
+
+.text-box-tab-wrapper {
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(0,0,0,0.25);
+    left: 500px;
+    cursor: pointer;
+}
+
+.text-box-tab {
+    float: left;
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
 #splash-background {
     position: absolute;
     width: 1000px;
 }
 
+#instructions-tab.active,
+#attribution-tab.active {
+    color: #ff69b4;
+}
 /*Game screen*/
 
 main {
+    position: relative;
     width: 1000px;
     height: 800px;
     margin: 0 auto;
@@ -101,7 +124,7 @@ main {
     width: 1000px;
     height: 600px;
     margin: 0 auto;
-    overflow: auto;
+
     background-image: url('../img/background.jpg');
 }
 
@@ -114,14 +137,17 @@ main {
 
 img.missile {
     position: absolute;
+    z-index: 10;
     width: 25px;
     display: block;
-    margin: 0 auto;
     left: 50%;
     transform: translateX(-50%);
+    top: -100px;
 }
 
 .city {
+    position: relative;
+    z-index: 20;
     width: 183px;
     height: 600px;
     display: block;
@@ -129,6 +155,13 @@ img.missile {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.explosion {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
 }
 
 .city1 {
@@ -172,6 +205,7 @@ img.missile {
     display: inline-block;
     background-color: #000000;
     color: #71b264;
+    font-size: 1.8rem;
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -189,6 +223,7 @@ img.missile {
 .totals {
     display: inline-block;
     width: 150px;
+    font-size: 1.4rem;
     padding: 0 10px;
 }
 
@@ -210,14 +245,23 @@ img.missile {
 }
 
 .start {
-    display: none;
+    position: absolute;
+    right: 34px;
+    bottom: 8px;
     background-color: #b21123;
     color: #ffffff;
+    font-size: 1.9rem;
+    padding: 8px;
     margin: 0 auto;
     border-radius: 100%;
     border: 4px solid #cccccc;
     width: 100px;
     height: 100px;
-    line-height: 90px;
+    line-height: 80px;
     text-align: center;
+    cursor: pointer;
+}
+
+a {
+    color: #ffffff;
 }
