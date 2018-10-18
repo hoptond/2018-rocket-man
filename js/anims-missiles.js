@@ -64,15 +64,15 @@ function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
     // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
     Array.prototype.forEach.call(cities, function(city) {
-        city.addEventListener('click', checkForMissiles)
+        city.addEventListener('click', onUserInput())
     })
 }
 
-/**
- * This was previously an anonymous function given its own function. It sets the column id and executes the isHit()
- * method to scan for any missiles in the column
+/*
+ * On either pressing the key on the keyboard or clicking the city, sets the column id, fires the laser, and checks
+ * for any missiles in the path of the laser
  */
-function checkForMissiles() {
+function onUserInput() {
     columnID = this.getAttribute('data-city')
     $city = $('#city-' +  columnID)
     shootLaser($city)
@@ -175,7 +175,7 @@ document.querySelector('#start').addEventListener('click', function(e) {
     missilesActive = true
     var cities = document.querySelector('.city')
      Array.prototype.forEach.call(cities, function(city) {
-         city.removeEventListener('click', checkForMissiles)
+         city.removeEventListener('click', onUserInput())
      })
     document.querySelector('#start').style.display = 'none'
 })
