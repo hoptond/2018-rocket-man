@@ -73,7 +73,7 @@ body {
     float: left;
 }
 
-#splash-instructions {
+#attribute-text-container {
     width: 500px;
     height: 400px;
     float: left;
@@ -82,11 +82,33 @@ body {
     background-color: rgba(0,0,0,0.25);
 }
 
+#attribution {
+    display: none;
+}
+
+.text-box-tab-wrapper {
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(0,0,0,0.25);
+    left: 500px;
+    cursor: pointer;
+}
+
+.text-box-tab {
+    float: left;
+    padding: 5px;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
 #splash-background {
     position: absolute;
     width: 1000px;
 }
 
+#instructions-tab.active,
+#attribution-tab.active {
+    color: hotpink;
+}
 /*Game screen*/
 
 main {
@@ -238,4 +260,8 @@ img.missile {
     line-height: 90px;
     text-align: center;
     cursor: pointer;
+}
+
+a {
+    color: #ffffff;
 }
