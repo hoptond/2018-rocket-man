@@ -65,6 +65,8 @@ function setGameOver() {
         destroyCity(city)
     })
     document.querySelector('#gameoverlay').classList.remove('hidden');
+    document.querySelector('#start').style.display = 'block'
+    document.querySelector('#start').textContent  = 'RETRY'
 }
 
 /**
@@ -225,11 +227,25 @@ function destroyCity(city) {
 }
 
 document.querySelector('#start').addEventListener('click', function(e) {
+        var cities = document.querySelectorAll('.city')
+    if(gameOver) {
+        gameOver = false;
+        gameScore.score = 0
+        gameScore.toll = 0
+        listenKeypressMissiles()
+        Array.prototype.forEach.call(cities, function(city) {
+            city.addEventListener('click', onUserInput)
+        })
+        document.querySelector('#gameoverlay').classList.add('hidden');
+    }
+    document.querySelector('#score').textContent = gameScore.score
+    document.querySelector('#toll').textContent = gameScore.toll
     repeatAnims()
     missilesActive = true
-    var cities = document.querySelector('.city')
     Array.prototype.forEach.call(cities, function(city) {
          city.addEventListener('click', onUserInput)
+         console.log('resetting city')
+         city.classList.remove('destroyed')
     })
     document.querySelector('#start').style.display = 'none'
 })
