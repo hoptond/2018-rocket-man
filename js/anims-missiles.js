@@ -1,4 +1,5 @@
 var missilesActive = false
+var gameOver = false
 var columnID = 0
 var gameScore = {
     score:0,
@@ -6,6 +7,8 @@ var gameScore = {
 }
 
 var impacts = [0, 0, 0, 0]
+
+var missileInterval
 
 /**
  * Function to prepend a missile to the html and then animate top to bottom
@@ -20,7 +23,7 @@ function dropMissile(animationTime) {
         top: "+=550"
     }, animationTime, "linear", function() {
         missileHitsCity($(this), columnNumber)
-    })
+    })  
 }
 
 /**
@@ -28,10 +31,12 @@ function dropMissile(animationTime) {
  * animationTime is variable based on users score
  */
 function repeatAnims() {
-    setInterval(function() {
-        var animationTime = animationChangeSpeed()
-        dropMissile(animationTime)
-    }, 500)
+    missileInterval = setInterval(beginDroppingMissiles, 500)
+}
+
+function beginDroppingMissiles() {
+    var animationTime = animationChangeSpeed()
+    dropMissile(animationTime)
 }
 
 /**
@@ -40,13 +45,24 @@ function repeatAnims() {
  * @param cityid the id of the the city that is being hit by the missile
  */
 function missileHitsCity($missile, cityid) {
-    gameScore.score -= 1
     gameScore.toll += 10000
-    document.querySelector('#score').textContent = gameScore.score
     document.querySelector('#toll').textContent = gameScore.toll
     hitCityEffect(cityid)
     $missile.remove()
+    if(gameScore.toll >= 500000 && gameOver == false) {
+        setGameOver()
+    }
+}
 
+function setGameOver() {
+    gameOver = true;
+    clearInterval(missileInterval)
+    document.removeEventListener('keypress', onKeyPress)
+    var cities = document.querySelectorAll('.city')
+    // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
+    Array.prototype.forEach.call(cities, function(city) {
+        city.removeEventListener('click', onUserInput)
+    })
 }
 
 /**
@@ -131,20 +147,22 @@ function laserResultSound(success, cityid) {
  * listens for key presses and re-assigns values based on key pressed.  Global var columID is re-assigned based on value of key pressed
  */
 function listenKeypressMissiles() {
-    document.addEventListener('keypress', function(e) {
-        var keys = {
-            'q': '1',
-            'w': '2',
-            'e': '3',
-            'r': '4'
-        }
-        if (e.key in keys) {
-            columnID = keys[e.key]
-            isHit()
-            $city = $('#city-' +  columnID)
-            shootLaser($city)
-        }
-    })
+    document.addEventListener('keypress', onKeyPress)
+}
+
+function onKeyPress(e) {
+    var keys = {
+        'q': '1',
+        'w': '2',
+        'e': '3',
+        'r': '4'
+    }
+    if (e.key in keys) {
+        columnID = keys[e.key]
+        isHit()
+        $city = $('#city-' +  columnID)
+        shootLaser($city)
+    }
 }
 
 /*
@@ -205,7 +223,7 @@ document.querySelector('#start').addEventListener('click', function(e) {
     missilesActive = true
     var cities = document.querySelector('.city')
     Array.prototype.forEach.call(cities, function(city) {
-         city.removeEventListener('click', onUserInput)
+         city.addEventListener('click', onUserInput)
     })
     document.querySelector('#start').style.display = 'none'
 })
