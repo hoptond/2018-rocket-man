@@ -196,6 +196,22 @@ img.missile {
     background-image: url('../img/cities-4-laser.png');
 }
 
+.city1.destroyed {
+	background-image: url('../img/cities-1-destroyed.png');	
+}
+
+.city2.destroyed {
+	background-image: url('../img/cities-2-destroyed.png');	
+}
+
+.city3.destroyed {
+	background-image: url('../img/cities-3-destroyed.png');	
+}
+
+.city4.destroyed {
+	background-image: url('../img/cities-4-destroyed.png');	
+}
+
 .keyboard-wrapper {
     width: 1000px;
     margin: 0 auto;

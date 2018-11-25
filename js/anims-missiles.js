@@ -62,6 +62,7 @@ function setGameOver() {
     // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
     Array.prototype.forEach.call(cities, function(city) {
         city.removeEventListener('click', onUserInput)
+        destroyCity(city)
     })
 }
 
@@ -216,6 +217,10 @@ function makeNoise(noise) {
     }
     var audio = new Audio(audioObj[noise])
     audio.play()
+}
+
+function destroyCity(city) {
+    city.classList.add('destroyed')
 }
 
 document.querySelector('#start').addEventListener('click', function(e) {
