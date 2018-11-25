@@ -64,6 +64,7 @@ function setGameOver() {
         city.removeEventListener('click', onUserInput)
         destroyCity(city)
     })
+    document.querySelector('#gameoverlay').classList.remove('hidden');
 }
 
 /**
