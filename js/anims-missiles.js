@@ -45,7 +45,9 @@ function beginDroppingMissiles() {
  * @param cityid the id of the the city that is being hit by the missile
  */
 function missileHitsCity($missile, cityid) {
-    gameScore.toll += 10000
+    if (!gameOver) {
+        gameScore.toll += 10000
+    }
     document.querySelector('#toll').textContent = gameScore.toll
     hitCityEffect(cityid)
     $missile.remove()
@@ -59,6 +61,10 @@ function setGameOver() {
     clearInterval(missileInterval)
     document.removeEventListener('keypress', onKeyPress)
     var cities = document.querySelectorAll('.city')
+    var missiles = document.querySelectorAll('.missile')
+    Array.prototype.forEach.call(missiles, function(missile) {
+        missile.parentNode.removeChild(missile)
+    })
     // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
     Array.prototype.forEach.call(cities, function(city) {
         city.removeEventListener('click', onUserInput)
@@ -182,14 +188,17 @@ function animationChangeSpeed() {
  * @param cityid The city being exploded.
  */
 function hitCityEffect(cityid) {
-    makeNoise('hitcity')
-    var explosion = document.querySelector('#city-' + cityid + ' .explosion')
-    clearTimeout(impacts[cityid - 1])
-    //we append a random query string to make the gif reliably start at zero when a new explosion occurs.
-    explosion.setAttribute('src', 'img/city-hit.gif' + '?explode=' + Math.random(4))
-    impacts[cityid - 1] = setTimeout(function(e) {
-        explosion.setAttribute('src', 'img/blank.png')
-    }, 1250)
+     //the missile images themselves and the effect timers are seperate, so to prevent explosions happening here after the game ends we just put them in a conditional. lazyness ho!
+    if (!gameOver) {
+        clearTimeout(impacts[cityid - 1])
+        makeNoise('hitcity')
+        var explosion = document.querySelector('#city-' + cityid + ' .explosion')
+        //we append a random query string to make the gif reliably start at zero when a new explosion occurs.
+        explosion.setAttribute('src', 'img/city-hit.gif' + '?explode=' + Math.random(4))
+        impacts[cityid - 1] = setTimeout(function(e) {
+            explosion.setAttribute('src', 'img/blank.png')
+        }, 1250)
+    }
 }
 
 /*
@@ -244,7 +253,6 @@ document.querySelector('#start').addEventListener('click', function(e) {
     missilesActive = true
     Array.prototype.forEach.call(cities, function(city) {
          city.addEventListener('click', onUserInput)
-         console.log('resetting city')
          city.classList.remove('destroyed')
     })
     document.querySelector('#start').style.display = 'none'
