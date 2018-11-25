@@ -75,6 +75,7 @@ function setGameOver() {
     document.querySelector('#gameoverlay').classList.remove('hidden');
     document.querySelector('#start').style.display = 'block'
     document.querySelector('#start').textContent  = 'RETRY'
+    makeNoise('gameover')
 }
 
 /**
@@ -124,6 +125,7 @@ function isHit() {
         $(missileNumber).stop()
         // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
         Array.prototype.forEach.call(missiles, function(missile) {
+                makeNoise('laser_destroy')
                 missile.classList.remove(missileNumber)
                 missile.src = "img/missile-explosion.gif";
                 setTimeout(function() {
@@ -158,11 +160,10 @@ function deactivateLaser(columnID) {
  * @param cityid The id of the given city
  */
 function laserResultSound(success, cityid) {
-    if(success) {
-        var sound = 'cheer' + cityid
-        makeNoise(sound)
-    } else {
-        makeNoise('miss')
+    var sound = 'laser' + cityid
+    makeNoise(sound)
+    if(!success) {
+        makeNoise('miss')    
     }
 }
 
@@ -237,12 +238,15 @@ function shootLaser($city) {
  */
 function makeNoise(noise) {
     var audioObj = {
-        cheer1: 'audio/cheer1.mp3',
-        cheer2: 'audio/cheer2.mp3',
-        cheer3: 'audio/cheer3.mp3',
-        cheer4: 'audio/cheer4.mp3',
+        laser1: 'audio/laser1.mp3',
+        laser2: 'audio/laser2.mp3',
+        laser3: 'audio/laser3.mp3',
+        laser4: 'audio/laser4.mp3',
         hitcity: 'audio/hit_city.mp3',
-        miss: 'audio/laser_miss.mp3'
+        miss: 'audio/laser_miss.mp3',
+        laser_destroy: 'audio/laser_destroy.mp3',
+        startgame: 'audio/start_game.mp3',
+        gameover: 'audio/gameover.mp3'
     }
     var audio = new Audio(audioObj[noise])
     audio.play()
@@ -273,4 +277,5 @@ document.querySelector('#start').addEventListener('click', function(e) {
          city.classList.remove('destroyed')
     })
     document.querySelector('#start').style.display = 'none'
+    makeNoise('startgame')
 })
