@@ -75,6 +75,7 @@ function setGameOver() {
     document.querySelector('#gameoverlay').classList.remove('hidden');
     document.querySelector('#start').style.display = 'block'
     document.querySelector('#start').textContent  = 'RETRY'
+    makeNoise('gameover')
 }
 
 /**
@@ -128,6 +129,7 @@ function isHit() {
                 missile.src = "img/missile-explosion.gif";
                 setTimeout(function() {
                     try {
+                        makeNoise('laser_destroy')
                         missile.parentNode.removeChild(missile);
                     } catch (e) {
                         // squash errors where the missile is already exploding and we don't need to remove it.
@@ -158,11 +160,10 @@ function deactivateLaser(columnID) {
  * @param cityid The id of the given city
  */
 function laserResultSound(success, cityid) {
-    if(success) {
-        var sound = 'cheer' + cityid
-        makeNoise(sound)
-    } else {
-        makeNoise('miss')
+    var sound = 'laser' + cityid
+    makeNoise(sound)
+    if(!success) {
+        makeNoise('miss')    
     }
 }
 
@@ -237,12 +238,18 @@ function shootLaser($city) {
  */
 function makeNoise(noise) {
     var audioObj = {
+        laser1: 'audio/laser1.mp3',
+        laser2: 'audio/laser2.mp3',
+        laser3: 'audio/laser3.mp3',
+        laser4: 'audio/laser4.mp3',
         cheer1: 'audio/cheer1.mp3',
         cheer2: 'audio/cheer2.mp3',
         cheer3: 'audio/cheer3.mp3',
         cheer4: 'audio/cheer4.mp3',
         hitcity: 'audio/hit_city.mp3',
-        miss: 'audio/laser_miss.mp3'
+        miss: 'audio/laser_miss.mp3',
+        laser_destroy: 'audio/laser_destroy.mp3',
+        gameover: 'audio/gameover.mp3'
     }
     var audio = new Audio(audioObj[noise])
     audio.play()
