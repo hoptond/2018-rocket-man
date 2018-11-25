@@ -1,4 +1,5 @@
 var missilesActive = false
+var gameOver = false
 var columnID = 0
 var gameScore = {
     score:0,
@@ -6,6 +7,10 @@ var gameScore = {
 }
 
 var impacts = [0, 0, 0, 0]
+
+var missileInterval
+
+var deactivatedLasers = [ false, false, false, false];
 
 /**
  * Function to prepend a missile to the html and then animate top to bottom
@@ -20,7 +25,7 @@ function dropMissile(animationTime) {
         top: "+=550"
     }, animationTime, "linear", function() {
         missileHitsCity($(this), columnNumber)
-    })
+    })  
 }
 
 /**
@@ -28,10 +33,12 @@ function dropMissile(animationTime) {
  * animationTime is variable based on users score
  */
 function repeatAnims() {
-    setInterval(function() {
-        var animationTime = animationChangeSpeed()
-        dropMissile(animationTime)
-    }, 500)
+    missileInterval = setInterval(beginDroppingMissiles, 500)
+}
+
+function beginDroppingMissiles() {
+    var animationTime = animationChangeSpeed()
+    dropMissile(animationTime)
 }
 
 /**
@@ -40,13 +47,34 @@ function repeatAnims() {
  * @param cityid the id of the the city that is being hit by the missile
  */
 function missileHitsCity($missile, cityid) {
-    gameScore.score -= 1
-    gameScore.toll += 10000
-    document.querySelector('#score').textContent = gameScore.score
+    if (!gameOver) {
+        gameScore.toll += 10000
+    }
     document.querySelector('#toll').textContent = gameScore.toll
     hitCityEffect(cityid)
     $missile.remove()
+    if(gameScore.toll >= 500000 && gameOver == false) {
+        setGameOver()
+    }
+}
 
+function setGameOver() {
+    gameOver = true;
+    clearInterval(missileInterval)
+    document.removeEventListener('keypress', onKeyPress)
+    var cities = document.querySelectorAll('.city')
+    var missiles = document.querySelectorAll('.missile')
+    Array.prototype.forEach.call(missiles, function(missile) {
+        missile.parentNode.removeChild(missile)
+    })
+    // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
+    Array.prototype.forEach.call(cities, function(city) {
+        city.removeEventListener('click', onUserInput)
+        destroyCity(city)
+    })
+    document.querySelector('#gameoverlay').classList.remove('hidden');
+    document.querySelector('#start').style.display = 'block'
+    document.querySelector('#start').textContent  = 'RETRY'
 }
 
 /**
@@ -58,7 +86,7 @@ function randomNumGen(topLimit) {
 }
 
 /**
- * creates click handler on .city elems
+ * creates click handler on .city elems        gameScore.score -= 1
  */
 function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
@@ -74,6 +102,9 @@ function createMissileClickHandler() {
  */
 function onUserInput() {
     columnID = this.getAttribute('data-city')
+    if(deactivatedLasers[columnID - 1]) {
+        return
+    }
     $city = $('#city-' +  columnID)
     shootLaser($city)
     isHit()
@@ -105,10 +136,19 @@ function isHit() {
             })
     } else if (missilesActive) {
         success = false
-        gameScore.score -= 1
-        document.querySelector('#score').textContent = gameScore.score
+        deactivateLaser(columnID);
     }
     laserResultSound(success, columnID)
+}
+
+
+function deactivateLaser(columnID) {
+    deactivatedLasers[columnID - 1] = true
+    document.querySelectorAll('.city')[columnID - 1].classList.add('deactivated')
+    setTimeout(function() {
+        deactivatedLasers[columnID - 1] = false
+            document.querySelectorAll('.city')[columnID - 1].classList.remove('deactivated')
+    }, 2000)
 }
 
 /*
@@ -131,20 +171,25 @@ function laserResultSound(success, cityid) {
  * listens for key presses and re-assigns values based on key pressed.  Global var columID is re-assigned based on value of key pressed
  */
 function listenKeypressMissiles() {
-    document.addEventListener('keypress', function(e) {
-        var keys = {
-            'q': '1',
-            'w': '2',
-            'e': '3',
-            'r': '4'
+    document.addEventListener('keypress', onKeyPress)
+}
+
+function onKeyPress(e) {
+    var keys = {
+        'q': '1',
+        'w': '2',
+        'e': '3',
+        'r': '4'
+    }
+    if (e.key in keys) {
+        columnID = keys[e.key]
+        if (deactivatedLasers[columnID - 1]) {
+            return
         }
-        if (e.key in keys) {
-            columnID = keys[e.key]
-            isHit()
-            $city = $('#city-' +  columnID)
-            shootLaser($city)
-        }
-    })
+        isHit()
+        $city = $('#city-' +  columnID)
+        shootLaser($city)
+    }
 }
 
 /*
@@ -160,14 +205,17 @@ function animationChangeSpeed() {
  * @param cityid The city being exploded.
  */
 function hitCityEffect(cityid) {
-    makeNoise('hitcity')
-    var explosion = document.querySelector('#city-' + cityid + ' .explosion')
-    clearTimeout(impacts[cityid - 1])
-    //we append a random query string to make the gif reliably start at zero when a new explosion occurs.
-    explosion.setAttribute('src', 'img/city-hit.gif' + '?explode=' + Math.random(4))
-    impacts[cityid - 1] = setTimeout(function(e) {
-        explosion.setAttribute('src', 'img/blank.png')
-    }, 1250)
+     //the missile images themselves and the effect timers are seperate, so to prevent explosions happening here after the game ends we just put them in a conditional. this is hacky as fuck but I'm hungry and I don't care anymore
+    if (!gameOver) {
+        clearTimeout(impacts[cityid - 1])
+        makeNoise('hitcity')
+        var explosion = document.querySelector('#city-' + cityid + ' .explosion')
+        //we append a random query string to make the gif reliably start at zero when a new explosion occurs.
+        explosion.setAttribute('src', 'img/city-hit.gif' + '?explode=' + Math.random(4))
+        impacts[cityid - 1] = setTimeout(function(e) {
+            explosion.setAttribute('src', 'img/blank.png')
+        }, 1250)
+    }
 }
 
 /*
@@ -200,12 +248,29 @@ function makeNoise(noise) {
     audio.play()
 }
 
+function destroyCity(city) {
+    city.classList.add('destroyed')
+}
+
 document.querySelector('#start').addEventListener('click', function(e) {
+        var cities = document.querySelectorAll('.city')
+    if(gameOver) {
+        gameOver = false;
+        gameScore.score = 0
+        gameScore.toll = 0
+        listenKeypressMissiles()
+        Array.prototype.forEach.call(cities, function(city) {
+            city.addEventListener('click', onUserInput)
+        })
+        document.querySelector('#gameoverlay').classList.add('hidden');
+    }
+    document.querySelector('#score').textContent = gameScore.score
+    document.querySelector('#toll').textContent = gameScore.toll
     repeatAnims()
     missilesActive = true
-    var cities = document.querySelector('.city')
     Array.prototype.forEach.call(cities, function(city) {
-         city.removeEventListener('click', onUserInput)
+         city.addEventListener('click', onUserInput)
+         city.classList.remove('destroyed')
     })
     document.querySelector('#start').style.display = 'none'
 })

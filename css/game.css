@@ -157,6 +157,10 @@ img.missile {
     background-size: cover;
 }
 
+.city.deactivated {
+	filter: brightness(0.4);
+}
+
 .explosion {
     position: absolute;
     bottom: -15px;
@@ -194,6 +198,22 @@ img.missile {
 
 .city4.laser {
     background-image: url('../img/cities-4-laser.png');
+}
+
+.city1.destroyed {
+	background-image: url('../img/cities-1-destroyed.png');	
+}
+
+.city2.destroyed {
+	background-image: url('../img/cities-2-destroyed.png');	
+}
+
+.city3.destroyed {
+	background-image: url('../img/cities-3-destroyed.png');	
+}
+
+.city4.destroyed {
+	background-image: url('../img/cities-4-destroyed.png');	
 }
 
 .keyboard-wrapper {
@@ -260,8 +280,30 @@ img.missile {
     line-height: 80px;
     text-align: center;
     cursor: pointer;
+	z-index: 60;
 }
 
 a {
     color: #ffffff;
+}
+
+/*Gameover stuff*/
+
+.hidden {
+	visibility: hidden;	
+}
+
+.gameover {
+	position: absolute;
+	background-color: rgba(45, 45, 45, 0.8);
+	width: 100%;
+	height: 100%;
+	z-index: 40;
+}
+
+.gameover h1 {
+	color: red;
+	text-align: center;
+	margin: 200px auto;
+	font-size: 8rem;
 }
