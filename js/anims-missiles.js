@@ -10,6 +10,8 @@ var impacts = [0, 0, 0, 0]
 
 var missileInterval
 
+var deactivatedLasers = [ false, false, false, false];
+
 /**
  * Function to prepend a missile to the html and then animate top to bottom
  * @param int animationTime the speed at which to drop a single missle
@@ -84,7 +86,7 @@ function randomNumGen(topLimit) {
 }
 
 /**
- * creates click handler on .city elems
+ * creates click handler on .city elems        gameScore.score -= 1
  */
 function createMissileClickHandler() {
     var cities = document.querySelectorAll('.city')
@@ -100,6 +102,9 @@ function createMissileClickHandler() {
  */
 function onUserInput() {
     columnID = this.getAttribute('data-city')
+    if(deactivatedLasers[columnID - 1]) {
+        return
+    }
     $city = $('#city-' +  columnID)
     shootLaser($city)
     isHit()
@@ -131,10 +136,19 @@ function isHit() {
             })
     } else if (missilesActive) {
         success = false
-        gameScore.score -= 1
-        document.querySelector('#score').textContent = gameScore.score
+        deactivateLaser(columnID);
     }
     laserResultSound(success, columnID)
+}
+
+
+function deactivateLaser(columnID) {
+    deactivatedLasers[columnID - 1] = true
+    document.querySelectorAll('.city')[columnID - 1].classList.add('deactivated')
+    setTimeout(function() {
+        deactivatedLasers[columnID - 1] = false
+            document.querySelectorAll('.city')[columnID - 1].classList.remove('deactivated')
+    }, 4000)
 }
 
 /*
@@ -169,6 +183,9 @@ function onKeyPress(e) {
     }
     if (e.key in keys) {
         columnID = keys[e.key]
+        if (deactivatedLasers[columnID - 1]) {
+            return
+        }
         isHit()
         $city = $('#city-' +  columnID)
         shootLaser($city)
@@ -188,7 +205,7 @@ function animationChangeSpeed() {
  * @param cityid The city being exploded.
  */
 function hitCityEffect(cityid) {
-     //the missile images themselves and the effect timers are seperate, so to prevent explosions happening here after the game ends we just put them in a conditional. lazyness ho!
+     //the missile images themselves and the effect timers are seperate, so to prevent explosions happening here after the game ends we just put them in a conditional. this is hacky as fuck but I'm hungry and I don't care anymore
     if (!gameOver) {
         clearTimeout(impacts[cityid - 1])
         makeNoise('hitcity')

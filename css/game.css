@@ -157,6 +157,10 @@ img.missile {
     background-size: cover;
 }
 
+.city.deactivated {
+	filter: brightness(0.4);
+}
+
 .explosion {
     position: absolute;
     bottom: -15px;
