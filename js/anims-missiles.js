@@ -125,11 +125,11 @@ function isHit() {
         $(missileNumber).stop()
         // forEach loop changed with Array.prototype.forEach.call due to compatibility issues in IE10
         Array.prototype.forEach.call(missiles, function(missile) {
+                makeNoise('laser_destroy')
                 missile.classList.remove(missileNumber)
                 missile.src = "img/missile-explosion.gif";
                 setTimeout(function() {
                     try {
-                        makeNoise('laser_destroy')
                         missile.parentNode.removeChild(missile);
                     } catch (e) {
                         // squash errors where the missile is already exploding and we don't need to remove it.
