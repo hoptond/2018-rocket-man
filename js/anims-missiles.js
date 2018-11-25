@@ -245,6 +245,7 @@ function makeNoise(noise) {
         hitcity: 'audio/hit_city.mp3',
         miss: 'audio/laser_miss.mp3',
         laser_destroy: 'audio/laser_destroy.mp3',
+        startgame: 'audio/start_game.mp3',
         gameover: 'audio/gameover.mp3'
     }
     var audio = new Audio(audioObj[noise])
@@ -276,4 +277,5 @@ document.querySelector('#start').addEventListener('click', function(e) {
          city.classList.remove('destroyed')
     })
     document.querySelector('#start').style.display = 'none'
+    makeNoise('startgame')
 })
