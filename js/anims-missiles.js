@@ -148,7 +148,7 @@ function deactivateLaser(columnID) {
     setTimeout(function() {
         deactivatedLasers[columnID - 1] = false
             document.querySelectorAll('.city')[columnID - 1].classList.remove('deactivated')
-    }, 4000)
+    }, 2000)
 }
 
 /*
