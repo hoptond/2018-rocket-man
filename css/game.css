@@ -124,8 +124,8 @@ main {
     width: 1000px;
     height: 600px;
     margin: 0 auto;
-
     background-image: url('../img/background.jpg');
+	background-position: bottom;
 }
 
 .col {
